@@ -11,7 +11,6 @@ import { getDatabase, ref, onValue } from "firebase/database";
 const initialFormValues = {
     email: "",
     password: "",
-    repassword: "",
 };
 
 
@@ -23,10 +22,6 @@ const Login = () => {
             .min(2, "Çok Kısa!")
             .max(50, "Çok Uzun!")
             .required(""),
-        repassword: yup
-            .string()
-            .oneOf([yup.ref('password')], 'Şifre Eşleşmiyor')
-            .required(''),
     });
 
     const handleSubmit = (formValues) => {
@@ -89,27 +84,16 @@ const Login = () => {
                                                 {errors.password}
                                             </Text>
                                         )}
-                                        <Input
-                                            value={values.repassword}
-                                            placeholder={"şifrenizi tekrar giriniz..."}
-                                            onType={handleChange("repassword")}
-                                            isSecure />
-                                        {errors.repassword && (
-                                            <Text
-                                                style={{
-                                                    fontSize: 10,
-                                                    color: "red",
-                                                    marginVertical: 1,
-                                                }}
-                                            >
-                                                {errors.repassword}
-                                            </Text>
-                                        )}
                                     </View>
                                     <View style={styles.button_container}>
-                                        <Button isSignup text={"Kayıt Ol"} onSelect={handleSubmit} />
+                                        <Button isSignup text={"Giriş Yap"} onSelect={handleSubmit} />
                                         <Button text={"Geri"} />
                                     </View>
+                                    <View style={styles.signup_section}>
+                                    <Text style={styles.signupText}>Üye değil misiniz ?</Text>
+                                    <Text style={styles.signupLink}>Üye ol</Text>
+                                    </View>
+
                                 </View>
                             )}
                         </Formik>
