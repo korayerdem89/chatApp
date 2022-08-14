@@ -5,8 +5,17 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { Formik } from "formik";
 import * as yup from "yup";
-import { getAuth } from "firebase/auth";
-import { getDatabase, ref, onValue } from "firebase/database";
+import {
+    getAuth,
+    signInWithCredential,
+  } from "firebase/auth";
+import { getDatabase, ref, set } from 'firebase/database';
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../../../config/keys";
+ 
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+auth.languageCode = "tr";
 
 const initialFormValues = {
     email: "",
