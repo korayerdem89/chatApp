@@ -21,7 +21,7 @@ export default StyleSheet.create({
   },
   buttonText:{
   fontSize:15,
-  color:COLORS.light_orange,
+  color:COLORS.dark_orange,
   fontWeight:"600"
   },
   signup_buttonText:{

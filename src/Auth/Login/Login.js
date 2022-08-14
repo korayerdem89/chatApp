@@ -97,7 +97,7 @@ const NavigateToSignup = () => {
                                         )}
                                     </View>
                                     <View style={styles.button_container}>
-                                        <Button isSignup text={"Giriş Yap"} onSelect={handleSubmit} />
+                                        <Button text={"Giriş Yap"} onSelect={handleSubmit} />
                                     </View>
                                     <View style={styles.signup_section}>
                                         <Text style={styles.signupText}>Üye değil misiniz ?</Text>
