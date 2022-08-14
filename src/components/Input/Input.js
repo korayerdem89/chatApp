@@ -3,11 +3,11 @@ import React from "react";
 import {View, TextInput } from "react-native";
 import styles from "./Input.style";
 
-function Input() {
+function Input({placeholder}) {
   return (
     <View style={styles.container} >
       <TextInput 
-      placeholder="hello"
+      placeholder={placeholder}
       placeholderTextColor= "#FFFFFF"
     //   value={value}
     //   onChangeText={onType}  
