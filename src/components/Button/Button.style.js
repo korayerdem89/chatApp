@@ -5,11 +5,15 @@ import COLORS  from '../../assets/colors';
 export default StyleSheet.create({
   container: {
     backgroundColor:"white",
-    borderWidth: 1,
-    flexDirection: "row",
-    borderColor: COLORS.dark_orange,
-    borderBottomColor: "#FFFFFF",
-    marginBottom: 20,
+    marginBottom: 10,
+    padding: 5,
+    alignItems:"center",
+    justifyContent:"center",
+    borderRadius:5,
+  },
+  signup_container: {
+    backgroundColor:"rgba(255,255,255,0.4)",
+    marginBottom: 10,
     padding: 5,
     alignItems:"center",
     justifyContent:"center",
@@ -18,6 +22,11 @@ export default StyleSheet.create({
   buttonText:{
   fontSize:15,
   color:COLORS.light_orange,
+  fontWeight:"600"
+  },
+  signup_buttonText:{
+  fontSize:15,
+  color:"white",
   fontWeight:"600"
   }
 });

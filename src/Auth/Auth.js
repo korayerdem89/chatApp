@@ -12,8 +12,9 @@ const Auth = () => {
             <Input placeholder={"şifrenizi giriniz..."} />
             <Input placeholder={"şifrenizi tekrar giriniz..."} />
             </View>
-        <View>
-         <Button />
+        <View style={styles.button_container}>
+         <Button isSignup text={"Kayıt Ol"} />
+         <Button text= {"Geri"}/>
         </View>
         </View>
     );

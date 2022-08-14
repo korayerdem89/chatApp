@@ -14,5 +14,8 @@ export default StyleSheet.create({
         alignSelf:"center",
         fontSize:25,
         color:"white",
+    },
+    button_container:{
+        marginTop:15
     }
 });
