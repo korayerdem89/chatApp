@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { ScrollView, View, Text, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
 import styles from './Login.style';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -14,7 +14,7 @@ const initialFormValues = {
 };
 
 
-const Login = () => {
+const Login = ({navigation}) => {
     const SignupValidationSchema = yup.object().shape({
         email: yup.string().email('Email adresinizi doğru giriniz').required(''),
         password: yup
@@ -27,7 +27,9 @@ const Login = () => {
     const handleSubmit = (formValues) => {
         console.log(formValues.email);
     };
-
+const NavigateToSignup = () => {
+    navigation.navigate("Signup");
+}
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -87,11 +89,12 @@ const Login = () => {
                                     </View>
                                     <View style={styles.button_container}>
                                         <Button isSignup text={"Giriş Yap"} onSelect={handleSubmit} />
-                                        <Button text={"Geri"} />
                                     </View>
                                     <View style={styles.signup_section}>
-                                    <Text style={styles.signupText}>Üye değil misiniz ?</Text>
-                                    <Text style={styles.signupLink}>Üye ol</Text>
+                                        <Text style={styles.signupText}>Üye değil misiniz ?</Text>
+                                        <TouchableOpacity onPress={NavigateToSignup}>
+                                            <Text style={styles.signupLink}>Üye ol</Text>
+                                        </TouchableOpacity>
                                     </View>
 
                                 </View>

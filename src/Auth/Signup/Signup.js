@@ -15,7 +15,7 @@ const initialFormValues = {
 };
 
 
-const Signup = () => {
+const Signup = ({navigation}) => {
     const SignupValidationSchema = yup.object().shape({
         email: yup.string().email('Email adresinizi doğru giriniz').required(''),
         password: yup
@@ -33,6 +33,9 @@ const Signup = () => {
         console.log(formValues.email);
     };
 
+    function navigateGoBack() {
+    navigation.goBack();
+    }
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -108,7 +111,7 @@ const Signup = () => {
                                     </View>
                                     <View style={styles.button_container}>
                                         <Button isSignup text={"Kayıt Ol"} onSelect={handleSubmit}  />
-                                        <Button text={"Geri"} />
+                                        <Button onSelect={navigateGoBack} text={"Geri"} />
                                     </View>
                                 </View>
                             )}
