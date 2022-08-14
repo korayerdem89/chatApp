@@ -1,10 +1,12 @@
 import React from 'react';
 import { ScrollView, View, Text, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import styles from './Auth.style';
-import Input from '../components/Input';
-import Button from '../components/Button';
+import styles from './Signup.style';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 import { Formik } from "formik";
 import * as yup from "yup";
+import { getAuth } from "firebase/auth";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 const initialFormValues = {
     email: "",
@@ -13,7 +15,7 @@ const initialFormValues = {
 };
 
 
-const Auth = () => {
+const Signup = () => {
     const SignupValidationSchema = yup.object().shape({
         email: yup.string().email('Email adresinizi doğru giriniz').required(''),
         password: yup
@@ -119,4 +121,4 @@ const Auth = () => {
 };
 
 
-export default Auth;
+export default Signup;
