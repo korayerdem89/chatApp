@@ -33,7 +33,7 @@ const Login = ({navigation}) => {
             .required(""),
     });
 
-    const handleSubmit = (formValues) => {
+    const handleLogin = (formValues) => {
         console.log(formValues.email);
     };
 const NavigateToSignup = () => {
@@ -51,7 +51,7 @@ const NavigateToSignup = () => {
                         <Text style={styles.header}>Chat App</Text>
                         <Formik
                             initialValues={initialFormValues}
-                            onSubmit={handleSubmit}
+                            onSubmit={handleLogin}
                             validationSchema={SignupValidationSchema}
                         >
                             {({

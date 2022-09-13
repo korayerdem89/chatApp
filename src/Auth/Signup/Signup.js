@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ScrollView, View, Text, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import styles from './Signup.style';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { Formik } from "formik";
 import * as yup from "yup";
-import { getAuth } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../../../config/keys";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, onValue } from "firebase/database";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+auth.languageCode = "tr";
+const db = getDatabase();
 
 const initialFormValues = {
     email: "",
@@ -30,7 +37,16 @@ const Signup = ({navigation}) => {
     });
 
     const handleSubmit = (formValues) => {
-        console.log(formValues.email);
+        try {
+           createUserWithEmailAndPassword(auth, formValues.email, formValues.password)
+           .then(userCredentials => {
+            const user = userCredentials.user;
+            console.log(user);
+           })
+       setLoading(false);
+        } catch (error) {
+      console.log(error);
+        } 
     };
 
     function navigateGoBack() {
