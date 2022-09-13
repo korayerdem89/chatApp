@@ -16,5 +16,17 @@ export default StyleSheet.create({
   },
   text:{
     color: COLORS.medium_orange
+  },
+  roomInput: {
+    borderWidth:1,
+    backgroundColor:"white",
+    width: deviceSize.width / 2,
+    padding:5,
+    alignItems:"center",
+    justifyContent:"center",
+    borderColor:"gray",
+    borderRadius:3,
+    color:"gray",
+    marginBottom:10
   }
 });

@@ -10,6 +10,8 @@ export default StyleSheet.create({
     alignItems:"center",
     justifyContent:"center",
     borderRadius:5,
+    borderWidth:1,
+    borderColor:COLORS.dark_orange
   },
   signup_container: {
     backgroundColor:"rgba(255,255,255,0.4)",

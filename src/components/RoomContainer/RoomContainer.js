@@ -1,13 +1,13 @@
 
 import React from "react";
-import { View, Text } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 import styles from "./RoomContainer.style";
 
-function RoomContainer() {
+function RoomContainer({text, onLongSelect}) {
     return (
-        <View style={styles.container} >
-            <Text style={styles.text}>Hello</Text>
-        </View>
+        <TouchableOpacity onLongPress={onLongSelect} style={styles.container} >
+            <Text style={styles.text}>{text}</Text>
+        </TouchableOpacity>
     );
 }
 export default RoomContainer;
