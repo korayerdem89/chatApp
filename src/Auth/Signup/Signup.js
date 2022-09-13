@@ -23,6 +23,7 @@ const initialFormValues = {
 
 
 const Signup = ({navigation}) => {
+    const [loading, setLoading] = useState(false);
     const SignupValidationSchema = yup.object().shape({
         email: yup.string().email('Email adresinizi doğru giriniz').required(''),
         password: yup
@@ -38,13 +39,14 @@ const Signup = ({navigation}) => {
 
     const handleSubmit = (formValues) => {
         try {
+            setLoading(true);
            createUserWithEmailAndPassword(auth, formValues.email, formValues.password)
            .then(userCredentials => {
             const user = userCredentials.user;
-            console.log(user);
+            setLoading(false);
            })
-       setLoading(false);
         } catch (error) {
+            setLoading(false);
       console.log(error);
         } 
     };
@@ -126,7 +128,7 @@ const Signup = ({navigation}) => {
                                         )}
                                     </View>
                                     <View style={styles.button_container}>
-                                        <Button isSignup text={"Kayıt Ol"} onSelect={handleSubmit}  />
+                                        <Button disabled={loading} isSignup text={"Kayıt Ol"} onSelect={handleSubmit}  />
                                         <Button onSelect={navigateGoBack} text={"Geri"} />
                                     </View>
                                 </View>
