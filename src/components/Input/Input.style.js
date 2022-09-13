@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 const deviceSize = Dimensions.get("window");
-import colors, { COLORS } from '../../assets/colors';
+import COLORS from '../../assets/colors';
 
 export default StyleSheet.create({
   container: {

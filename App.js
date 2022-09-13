@@ -4,6 +4,7 @@ import Login from './src/Pages/Auth/Login/Login';
 import Rooms from './src/Pages/Rooms';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
+import COLORS from './src/assets/colors';
 const Stack = createStackNavigator();
 
 
@@ -26,8 +27,13 @@ export default function App() {
   const MainPages = () => {
     return (
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown:false}}>
-          <Stack.Screen name="RoomsScreen" component = {Rooms} />
+        <Stack.Navigator     screenOptions={() => ({
+        headerTintColor: COLORS.medium_orange,
+        headerStyle: {
+          height: 80,
+        },
+      })}>
+          <Stack.Screen name="Odalar" component = {Rooms} />
         </Stack.Navigator>
       </NavigationContainer>
     )

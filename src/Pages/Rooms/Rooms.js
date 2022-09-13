@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
-import {View, Text  } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 import styles from './Rooms.style';
-
+import RoomContainer from '../../components/RoomContainer/RoomContainer';
 
 const Rooms = () => {
 
-return (
- <View><Text>Hello</Text></View>
-);
+    return (
+        <View style={styles.container}>
+           <RoomContainer />
+        </View>
+    );
 
 };
 
