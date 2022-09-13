@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import { ScrollView, View, Text, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import styles from './Signup.style';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
 import { Formik } from "formik";
 import * as yup from "yup";
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../../config/keys";
+import { firebaseConfig } from "../../../../config/keys";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, onValue } from "firebase/database";
 

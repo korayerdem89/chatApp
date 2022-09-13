@@ -1,6 +1,6 @@
 import { LogBox } from 'react-native'
-import Signup from './src/Auth/Signup/Signup';
-import Login from './src/Auth/Login/Login';
+import Signup from './src/Pages/Auth/Signup/Signup';
+import Login from './src/Pages/Auth/Login/Login';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 const Stack = createStackNavigator();

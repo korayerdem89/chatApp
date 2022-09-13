@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { ScrollView, View, Text, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
 import styles from './Login.style';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
 import { Formik } from "formik";
 import * as yup from "yup";
 import {
@@ -11,7 +11,7 @@ import {
 } from "firebase/auth";
 import { getDatabase, ref, set } from 'firebase/database';
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../../config/keys";
+import { firebaseConfig } from "../../../../config/keys";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -114,7 +114,7 @@ return (
                                 </View>
                                 <View style={styles.signup_section}>
                                     <Text style={styles.signupText}>Üye değil misiniz ?</Text>
-                                    <TouchableOpacity onPress={NavigateToSignup}>
+                                    <TouchableOpacity disabled={loading} onPress={NavigateToSignup}>
                                         <Text style={styles.signupLink}>Üye ol</Text>
                                     </TouchableOpacity>
                                 </View>
