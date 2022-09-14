@@ -2,6 +2,7 @@ import { LogBox } from 'react-native'
 import Signup from './src/Pages/Auth/Signup/Signup';
 import Login from './src/Pages/Auth/Login/Login';
 import Rooms from './src/Pages/Rooms';
+import ChatRoom from './src/Pages/ChatRoom';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 import COLORS from './src/assets/colors';
@@ -33,7 +34,8 @@ export default function App() {
           height: 80,
         },
       })}>
-          <Stack.Screen name="Odalar" component = {Rooms} />
+          {/* <Stack.Screen name="Odalar" component = {Rooms} /> */}
+          <Stack.Screen name="ChatRoom" component = {ChatRoom} />
         </Stack.Navigator>
       </NavigationContainer>
     )
