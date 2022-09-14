@@ -4,9 +4,10 @@ import styles from './Rooms.style';
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../../../config/keys";
 import RoomContainer from '../../components/RoomContainer/RoomContainer';
+import parsedData from '../../utils/parsedData';
 import AddRoom from '../../components/ModalViews/AddRoom';
-import { getDatabase, ref, onValue, push } from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, push, onValue, remove } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -21,48 +22,59 @@ const Rooms = () => {
     const handleAddRoom = async () => {
         if (roomItems.indexOf(roomName) > -1) {
             return Alert.alert('Bu isimde oda zaten mevcut');
-        } 
+        }
         const reference = await ref(db, `Rooms`);
         push(reference, {
-          roomName
+            roomName
         });
         setRoomItems([...roomItems, roomName]);
         setRoomName("");
         setModalVisible(false);
     };
 
- 
-    
-    console.log(roomItems);
-  const removeItem = (index) => {
-    let itemsCopy = [...roomItems];
-    itemsCopy.splice(index, 1);
-    setRoomItems(itemsCopy);
-    console.log(index);
-  }
-      const renderRoomItems = ({item, index}) => {
+    useEffect(() => {
+        const roomsData = ref(db, 'Rooms/');
+        onValue(roomsData, (snapshot) => {
+            const contentData = snapshot.val();
+            const parsedContentData = parsedData(contentData);
+            setRoomItems(parsedContentData);
+        });
+    }, [roomName])
+
+    const removeItem = (item, index) => {
+        let itemsCopy = [...roomItems];
+        const reference = ref(
+            db,
+            `Rooms/${item.id}`
+        );
+        remove(reference);
+        itemsCopy.splice(index, 1);
+        setRoomItems(itemsCopy);
+        console.log(index);
+    }
+    const renderRoomItems = ({ item, index }) => {
         return (
-            <ScrollView style={{height:200}}>
-               <View>
-                <RoomContainer onLongSelect={() => removeItem(index)} text={item} />
-               </View>
+            <ScrollView style={{ height: 200 }}>
+                <View>
+                    <RoomContainer onLongSelect={() => removeItem(item, index)} text={item.roomName} />
+                </View>
             </ScrollView>
         )
     };
-console.log(roomItems);
+
     return (
         <View style={styles.container}>
             <FlatList
                 numColumns={2}
                 data={roomItems}
-                keyExtractor={(item, index) => index}
-                renderItem={ renderRoomItems }
-                style={{marginTop:20, flex:1}}
+                keyExtractor={(item, _index) => item.id}
+                renderItem={renderRoomItems}
+                style={{ marginTop: 20, flex: 1 }}
             />
-            <View style={{flex:0.25}}>
-            <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.toggleButton}>
-                <Text style={{ fontSize: 40, color: "white" }}>+</Text>
-            </TouchableOpacity>
+            <View style={{ flex: 0.25 }}>
+                <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.toggleButton}>
+                    <Text style={{ fontSize: 40, color: "white" }}>+</Text>
+                </TouchableOpacity>
             </View>
 
             <AddRoom onSelect={handleAddRoom} onChangeText={(text) => setRoomName(text)} visible={isModalVisible} onBackdropPress={() => setModalVisible(false)} onSwipeMove={() => setModalVisible(false)} />
