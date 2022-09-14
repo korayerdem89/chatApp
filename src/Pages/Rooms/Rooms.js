@@ -33,12 +33,14 @@ const Rooms = () => {
     };
 
     useEffect(() => {
+        if (roomItems.length > 0) {
         const roomsData = ref(db, 'Rooms/');
         onValue(roomsData, (snapshot) => {
             const contentData = snapshot.val();
             const parsedContentData = parsedData(contentData);
             setRoomItems(parsedContentData);
         });
+    }
     }, [roomName])
 
     const removeItem = (item, index) => {
