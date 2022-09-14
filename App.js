@@ -36,7 +36,7 @@ export default function App() {
         },
       })}>
           <Stack.Screen name="Odalar" component = {Rooms} />
-          <Stack.Screen options= {({route})=> ({title:route.params.name})} name="ChatRoom" component = {ChatRoom} />
+          <Stack.Screen options= {({route})=> ({title:`${route.params.name} Odası`})} name="ChatRoom" component = {ChatRoom} />
         </Stack.Navigator>
       </NavigationContainer>
     )
