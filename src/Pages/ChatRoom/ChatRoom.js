@@ -8,10 +8,18 @@ import { getAuth } from "firebase/auth";
 
  
 
-const ChatRoom = () => {
+const ChatRoom = ({route}) => {
+    const room = route.params.name;
+    console.log(room);
     return (
         <View style={styles.container}>
-            <Text>Hello</Text>
+            <Text style={styles.header}>Oda kuruldu!</Text>
+            <Text style={{flex:1}}>{room}</Text>
+            <View>
+                <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.toggleButton}>
+                    <Text style={{ fontSize: 40, color: "white" }}>+</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 

@@ -26,6 +26,7 @@ export default function App() {
   //   )
   // }
   const MainPages = () => {
+
     return (
       <NavigationContainer>
         <Stack.Navigator     screenOptions={() => ({
@@ -34,8 +35,8 @@ export default function App() {
           height: 80,
         },
       })}>
-          {/* <Stack.Screen name="Odalar" component = {Rooms} /> */}
-          <Stack.Screen name="ChatRoom" component = {ChatRoom} />
+          <Stack.Screen name="Odalar" component = {Rooms} />
+          <Stack.Screen options= {({route})=> ({title:route.params.name})} name="ChatRoom" component = {ChatRoom} />
         </Stack.Navigator>
       </NavigationContainer>
     )

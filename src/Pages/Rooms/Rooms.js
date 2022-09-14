@@ -14,7 +14,7 @@ const auth = getAuth(app);
 auth.languageCode = "tr";
 const db = getDatabase();
 
-const Rooms = () => {
+const Rooms = ({navigation}) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [roomName, setRoomName] = useState("");
     const [roomItems, setRoomItems] = useState([]);
@@ -31,18 +31,18 @@ const Rooms = () => {
         setRoomName("");
         setModalVisible(false);
     };
-
+    const navigateToChatRoom = (room) => {
+        navigation.navigate("ChatRoom", { name: room })
+    };
     useEffect(() => {
-        if (roomItems.length > 0) {
         const roomsData = ref(db, 'Rooms/');
         onValue(roomsData, (snapshot) => {
             const contentData = snapshot.val();
             const parsedContentData = parsedData(contentData);
             setRoomItems(parsedContentData);
         });
-    }
     }, [roomName])
-
+  
     const removeItem = (item, index) => {
         let itemsCopy = [...roomItems];
         const reference = ref(
@@ -58,7 +58,7 @@ const Rooms = () => {
         return (
             <ScrollView style={{ height: 200 }}>
                 <View>
-                    <RoomContainer onLongSelect={() => removeItem(item, index)} text={item.roomName} />
+                    <RoomContainer onSelect = {() => navigateToChatRoom(item.roomName)} onLongSelect={() => removeItem(item, index)} text={item.roomName} />
                 </View>
             </ScrollView>
         )
