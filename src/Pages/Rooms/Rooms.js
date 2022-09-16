@@ -31,8 +31,8 @@ const Rooms = ({navigation}) => {
         setRoomName("");
         setModalVisible(false);
     };
-    const navigateToChatRoom = (room) => {
-        navigation.navigate("ChatRoom", { name: room })
+    const navigateToChatRoom = (room, id) => {
+        navigation.navigate("ChatRoom", { name: room, idNumber: id })
     };
     useEffect(() => {
         const roomsData = ref(db, 'Rooms/');
@@ -58,7 +58,7 @@ const Rooms = ({navigation}) => {
         return (
             <ScrollView style={{ height: 200 }}>
                 <View>
-                    <RoomContainer onSelect = {() => navigateToChatRoom(item.roomName)} onLongSelect={() => removeItem(item, index)} text={item.roomName} />
+                    <RoomContainer onSelect = {() => navigateToChatRoom(item.roomName, item.id)} onLongSelect={() => removeItem(item, index)} text={item.roomName} />
                 </View>
             </ScrollView>
         )
